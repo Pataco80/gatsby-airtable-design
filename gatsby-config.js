@@ -26,5 +26,40 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Roboto`,
+            variants: [`400`, `500`, `700`],
+          },
+          {
+            family: `Open Sans`,
+          },
+          {
+            family: `Caveat`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE,
+            tableName: `Projects`,
+            mapping: { image: `fileNode` },
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE,
+            tableName: `Customers`,
+            mapping: { image: `fileNode` },
+          },
+        ],
+      },
+    },
   ],
 }

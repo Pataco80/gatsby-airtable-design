@@ -7,10 +7,10 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 const Slider = ({ customers = [] }) => {
-  const [index, setIndex] = React.useState(0)
+  const [index, setIndex] = useState(0)
 
   const nextSlide = () => {
-    setIndex(oldIndex => {
+    setIndex((oldIndex) => {
       let index = oldIndex + 1
       if (index > customers.length - 1) {
         index = 0
@@ -19,7 +19,7 @@ const Slider = ({ customers = [] }) => {
     })
   }
   const prevSlide = () => {
-    setIndex(oldIndex => {
+    setIndex((oldIndex) => {
       let index = oldIndex - 1
       if (index < 0) {
         index = customers.length - 1
@@ -29,7 +29,7 @@ const Slider = ({ customers = [] }) => {
   }
   useEffect(() => {
     let slider = setInterval(() => {
-      setIndex(oldIndex => {
+      setIndex((oldIndex) => {
         let index = oldIndex + 1
         if (index > customers.length - 1) {
           index = 0
@@ -43,9 +43,9 @@ const Slider = ({ customers = [] }) => {
   }, [index])
 
   return (
-    <Wrapper className="section">
-      <Title title="reviews" />
-      <div className="section-center">
+    <Wrapper className='section'>
+      <Title title='reviews' />
+      <div className='section-center'>
         {customers.map((customer, customerIndex) => {
           const {
             data: { image, name, title, quote },
@@ -67,20 +67,20 @@ const Slider = ({ customers = [] }) => {
             <article className={position} key={customerIndex}>
               <GatsbyImage
                 image={customerImg}
-                className="img"
+                className='img'
                 alt={name}
               ></GatsbyImage>
               <h4>{name}</h4>
-              <p className="title">{title}</p>
-              <p className="text">{quote}</p>
-              <FaQuoteRight className="icon" />
+              <p className='title'>{title}</p>
+              <p className='text'>{quote}</p>
+              <FaQuoteRight className='icon' />
             </article>
           )
         })}
-        <button className="prev" onClick={prevSlide}>
+        <button className='prev' onClick={prevSlide}>
           <FiChevronLeft />
         </button>
-        <button className="next" onClick={nextSlide}>
+        <button className='next' onClick={nextSlide}>
           <FiChevronRight />
         </button>
       </div>
@@ -103,7 +103,7 @@ const Wrapper = styled.div`
     .img {
       border-radius: 50%;
       margin-bottom: 1rem;
-       display: inline-block !important;
+      display: inline-block !important;
     }
     h4 {
       text-transform: uppercase;
