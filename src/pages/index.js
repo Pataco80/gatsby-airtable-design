@@ -71,8 +71,6 @@ const HomePage = ({ data }) => {
     projectsList: { nodes: projects },
     customersList: { nodes: customers },
   } = data
-  console.log(projects)
-  console.log(customers)
 
   return (
     <Layout>
