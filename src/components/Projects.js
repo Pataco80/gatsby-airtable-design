@@ -9,17 +9,27 @@ const Projects = (props) => {
   const { projects: data, title, page } = props
   const [projects, setProjects] = useState(data)
 
+  const setBackToAll = () => {
+    setProjects(data)
+  }
+
   return (
     <Wrapper className='section'>
       <Title title={title || 'Projects'} />
-      {/* Serach buttons here */}
+      {page && (
+        <SearchButtons
+          projects={data}
+          setProjects={setProjects}
+          setBackToAll={setBackToAll}
+        />
+      )}
       <div className='section-center'>
         {projects.map((item) => {
           const { id } = item
-          const { name, categories, image } = item.data
+          const { name, category, image } = item.data
 
           return (
-            <article>
+            <article Key={id}>
               <div className='container'>
                 <GatsbyImage
                   image={getImage(image.localFiles[0])}
@@ -27,7 +37,7 @@ const Projects = (props) => {
                   className='img'
                 />
                 <div className='info'>
-                  <p>- {categories} -</p>
+                  <p>- {category} -</p>
                   <h3>{name}</h3>
                 </div>
               </div>

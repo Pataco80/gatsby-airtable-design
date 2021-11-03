@@ -1,12 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const SearchButtons = () => {
-  
+const SearchButtons = (props) => {
+  const { projects, setProjects, setBackToAll } = props
+  const [index, setIndex] = useState(0)
 
-  
+  const categories = [
+    'All',
+    ...new Set(
+      projects.map((project) => {
+        return project.data.category
+      })
+    ),
+  ]
+
+  const showProjects = (category, categoryIndex) => {
+    setIndex(categoryIndex)
+    if (category === 'All') {
+      setBackToAll()
+    } else {
+      const tempProjects = projects.filter(
+        (project) => project.data.category === category
+      )
+      setProjects(tempProjects)
+    }
+  }
+
   return (
-    <h2>search buttons</h2>
+    <Wrapper>
+      {categories.map((category, categoryIndex) => {
+        return (
+          <button
+            key={categoryIndex}
+            className={index === categoryIndex ? 'active' : undefined}
+            onClick={() => showProjects(category, categoryIndex)}
+          >
+            {category}
+          </button>
+        )
+      })}
+    </Wrapper>
   )
 }
 const Wrapper = styled.section`

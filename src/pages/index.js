@@ -22,7 +22,7 @@ export const query = graphql`
         id
         data {
           name
-          categories
+          category
           date(locale: "fr", formatString: "DD MMM YYYY")
           image {
             localFiles {
