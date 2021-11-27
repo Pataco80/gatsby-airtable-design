@@ -1,7 +1,8 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-// const queries = require("./src/constants/algolia")
+//const queries = require('./src/constants/algolia')
+
 module.exports = {
   siteMetadata: {
     title: `Design Shop`,
@@ -26,23 +27,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto`,
-            variants: [`400`, `500`, `700`],
-          },
-          {
-            family: `Open Sans`,
-          },
-          {
-            family: `Caveat`,
-          },
-        ],
-      },
-    },
+
     {
       resolve: `gatsby-source-airtable`,
       options: {
@@ -59,6 +44,19 @@ module.exports = {
             mapping: { image: `fileNode` },
           },
         ],
+      },
+    },
+    {
+      // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
+        // Tip: use Search API key with GATSBY_ prefix to access the service from within components
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
+        queries: require('./src/constants/algolia'), //`${queries}`,
+        chunkSize: 10000, // default: 1000
       },
     },
   ],
