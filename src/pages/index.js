@@ -15,7 +15,7 @@ export const query = graphql`
     projectsList: allAirtable(
       filter: { table: { eq: "Projects" } }
       sort: { fields: data___date, order: DESC }
-      limit: 3
+      limit: 4
     ) {
       totalCount
       nodes {
@@ -76,7 +76,7 @@ const HomePage = ({ data }) => {
     <Layout>
       <Hero />
       <About />
-      <Projects projects={projects} title='Latest Projects' />
+      <GridProjects projects={projects} title='Latest Projects' />
       <Survey />
       <Slider customers={customers} />
     </Layout>
