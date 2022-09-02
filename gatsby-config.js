@@ -1,4 +1,4 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 //const queries = require('./src/constants/algolia')
@@ -14,6 +14,7 @@ module.exports = {
     twitterUsername: `@john_smilga`,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -55,7 +56,7 @@ module.exports = {
         // Tip: use Search API key with GATSBY_ prefix to access the service from within components
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
         indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
-        queries: require('./src/constants/algolia'), //`${queries}`,
+        queries: require("./src/constants/algolia"), //`${queries}`,
         chunkSize: 10000, // default: 1000
       },
     },
